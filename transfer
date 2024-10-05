@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# This script transfers a file to a remote server
+
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <file_to_transfer> <remote_server_ip>"
+    exit 1
+fi
+
+FILE=$1
+REMOTE_SERVER=$2
+
+# Transfer the file using scp
+scp "$FILE" ubuntu@"$REMOTE_SERVER":/tmp/
+
+if [ $? -eq 0 ]; then
+    echo "File transferred successfully."
+else
+    echo "File transfer failed."
+fi
+
